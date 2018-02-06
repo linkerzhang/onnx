@@ -4,9 +4,9 @@
 #include "onnx/defs/schema.h"
 #include <functional>
 
-using namespace onnx;
+using namespace ONNX_NAMESPACE;
 
-namespace onnx {
+namespace ONNX_NAMESPACE {
 
 const char* kBroadcastDoc = R"DOC(
 If necessary the right-hand-side argument will be broadcasted to match the
@@ -110,7 +110,7 @@ OPERATOR_SCHEMA(Mul)
 OPERATOR_SCHEMA(Div)
     .AllowConsumed({{0, 0}, {1, 0}})
     .FillUsing(MathDocGenerator("division"));
-}  // namespace onnx
+}  // namespace ONNX_NAMESPACE
 
 OPERATOR_SCHEMA(Neg)
     .AllowConsumed({{0, 0}})
@@ -198,9 +198,9 @@ the tensor elementwise.
 
 OPERATOR_SCHEMA(LeakyRelu)
     .Attr("alpha",
-          "Coefficient of leakage",
+          "Coefficient of leakage default to 0.01.",
           AttributeProto::FLOAT,
-          OPTIONAL)
+          0.01f)
     .AllowConsumed({{0, 0}})
     .SetDoc(R"DOC(
 LeakyRelu takes input data (Tensor<T>) and an argument alpha, and produces one
@@ -336,13 +336,13 @@ tensor elementwise.
 OPERATOR_SCHEMA(HardSigmoid)
   .AllowConsumed({{0, 0}})
   .Attr("alpha",
-        "Value of alpha",
+        "Value of alpha default to 0.2",
         AttributeProto::FLOAT,
-        OPTIONAL)
+        0.2f)
   .Attr("beta",
-        "Value of beta",
+        "Value of beta default to 0.5",
         AttributeProto::FLOAT,
-        OPTIONAL)
+        0.5f)
   .SetDoc(R"DOC(
 HardSigmoid takes one input data (Tensor<T>) and produces one output data
 (Tensor<T>) where the HardSigmoid function, y = max(0, min(1, alpha * x + beta)),

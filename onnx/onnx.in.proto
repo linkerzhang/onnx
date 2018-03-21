@@ -449,18 +449,6 @@ message OperatorSetIdProto {
   optional int64 version = 2;
 }
 
-// Defines a function parameter.
-message ParameterDeclProto {
-  // The name of this parameter. Must be present.
-  optional string name = 1;
-
-  // The type/shape of this parameter.
-  optional TypeProto type = 2; 
-
-  // A human-readable doc string for this parameter. 
-  optional string doc_string = 3; 
-} 
-
 // Defines a function attribute.
 message FunctionAttrProto {
   // The attribute name of the function. Must be present.

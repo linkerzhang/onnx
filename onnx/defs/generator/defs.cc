@@ -14,8 +14,8 @@ ONNX_OPERATOR_SCHEMA(Constant)
             0,
             "output",
             "Output tensor containing the same value of the provided tensor.", "T")
-    .TypeConstraint("T", { "tensor(float16)", "tensor(float)", "tensor(double)" },
-        "Constrain input and output types to float tensors.");
+    .TypeConstraint("T", OpSchema::all_tensor_types(),
+        "Constrain output types to all tensor types.");
 
 ONNX_OPERATOR_SCHEMA(RandomUniform)
     .SetDoc(R"DOC(

@@ -596,7 +596,7 @@ ONNX_OPERATOR_SCHEMA(DepthToSpace)
         "blocksize",
         "Blocks of [blocksize, blocksize] are moved.",
         AttributeProto::INT,
-        OPTIONAL)
+        static_cast<int64_t>(1))
     .SetDoc(
         R"DOC(DepthToSpace rearranges (permutes) data from depth into blocks of spatial data.
 This is the reverse transformation of SpaceToDepth. More specifically, this op outputs a copy of
